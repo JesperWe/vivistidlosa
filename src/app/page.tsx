@@ -44,13 +44,20 @@ export default async function Home() {
                         <CarouselItem key={bouquet.id}>
                             <div className="relative w-full h-[calc(100dvh)]">
 
-                                <img
-                                    alt="Slide 1"
-                                    className="w-full h-full object-cover object-center"
-                                    src={"https://cms.vivistidlosa.se/assets/"+bouquet.hero_image?.filename_disk}
-                                />
+                                <picture className="w-full h-full">
+                                    <source media="(min-width: 2000px)"
+                                            srcSet={"https://cms.vivistidlosa.se/assets/" + bouquet.hero_image?.filename_disk}/>
+                                    <source media="(min-width: 500px)"
+                                            srcSet={"https://cms.vivistidlosa.se/assets/" + bouquet.hero_image?.filename_disk + '?key=2k'}/>
+                                    <img
+                                        alt="Slide 1"
+                                        className="w-full h-full object-cover object-center"
+                                        src={"https://cms.vivistidlosa.se/assets/" + bouquet.hero_image?.filename_disk + '?key=1k'}
+                                    />
+                                </picture>
 
-                                <div className="absolute inset-0 flex flex-col items-center justify-end text-center px-4 md:px-6">
+                                <div
+                                    className="absolute inset-0 flex flex-col items-center justify-end text-center px-4 md:px-6">
 
                                     <p className="text-3xl md:text-5xl tracking-tight">
                                         {bouquet.name}
