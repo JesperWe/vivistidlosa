@@ -38,7 +38,7 @@ export default async function Home() {
                 <p><img src="/logo.svg" alt="" width={300}/></p>
             </div>
 
-            <Carousel className="w-full h-screen">
+            <Carousel className="w-full h-[calc(100dvh)]">
                 <CarouselContent>
                     {b.bouquet.map(bouquet => (
                         <CarouselItem key={bouquet.id}>
