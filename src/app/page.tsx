@@ -42,7 +42,7 @@ export default async function Home() {
                 <CarouselContent>
                     {b.bouquet.map(bouquet => (
                         <CarouselItem key={bouquet.id}>
-                            <div className="relative w-full h-screen">
+                            <div className="relative w-full h-[calc(100dvh)]">
 
                                 <img
                                     alt="Slide 1"
