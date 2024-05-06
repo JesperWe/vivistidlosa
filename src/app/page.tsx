@@ -33,7 +33,7 @@ export default async function Home() {
 
     return (
         <main className="relative">
-            <div className="absolute right-8 bottom-2 z-10 p-2">
+            <div className="absolute right-2 md:right-8 bottom-2 z-10 p-2">
                 <p><img src="/logo.svg" alt="" className="w-[calc(100px+10dvw)]"/></p>
             </div>
 
