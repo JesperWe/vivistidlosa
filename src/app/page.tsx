@@ -2,7 +2,10 @@ import {gql} from '@/__generated__/gql'
 import {GraphQLClient} from 'graphql-request'
 import React from "react"
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,} from "@/components/ui/carousel"
-import {ArrowLeftCircleIcon, ArrowRightCircleIcon} from '@heroicons/react/24/solid'
+import {ArrowLeftCircleIcon, ArrowRightCircleIcon, Bars3Icon} from '@heroicons/react/24/solid'
+import {Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,} from "@/components/ui/sheet"
+import {Separator} from "@/components/ui/separator"
+import Link from "next/link"
 
 const bouquets = gql(`
 		query Bouquets {
@@ -32,7 +35,30 @@ export default async function Home() {
     const b = await getData()
 
     return (
-        <main className="relative">
+        <main>
+            <Sheet>
+                <SheetTrigger className="absolute z-10 px-4 py-2">
+                    <Bars3Icon className={"size-10 text-black opacity-60"}/>
+                </SheetTrigger>
+
+                <SheetContent side="left">
+                    {/* Steal the "Focus on first interactive element" so it doesn't focus the X */}
+                    <button/>
+                    <SheetHeader>
+                        <SheetTitle>
+                            <img src="/logo.svg" alt="" className="w-[calc(150px+8dvw)]"/>
+                        </SheetTitle>
+                    </SheetHeader>
+                    <div className={"py-4 text-2xl text-left"}>
+                        <Link href="/">Prislista</Link>
+                    </div>
+                    <Separator/>
+                    <div className={"py-4 text-2xl text-left"}>
+                        <Link href="/">Vanliga frågor</Link>
+                    </div>
+                </SheetContent>
+            </Sheet>
+
             <div className="absolute right-2 md:right-8 bottom-2 z-10 p-2">
                 <p><img src="/logo.svg" alt="" className="w-[calc(100px+10dvw)]"/></p>
             </div>
@@ -58,7 +84,8 @@ export default async function Home() {
                                 <div
                                     className="absolute bottom-2 z-10 p-2 w-full bg-white bg-opacity-30 backdrop-blur-md"
                                 >
-                                    <div className="flex flex-col items-start lg:items-center justify-end text-center px-4 md:px-6">
+                                    <div
+                                        className="flex flex-col items-start lg:items-center justify-end text-center px-4 md:px-6">
                                         <p className="text-lg sm:text-2xl lg:text-4xl tracking-tight">
                                             {bouquet.name}
                                         </p>
