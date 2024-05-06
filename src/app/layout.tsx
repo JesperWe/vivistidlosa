@@ -1,9 +1,9 @@
 import type {Metadata} from "next"
-import {Inter} from "next/font/google"
+import {Crimson_Pro} from "next/font/google"
 import "./globals.css"
 import {cn} from "@/lib/utils"
 
-const fontSans = Inter({subsets: ["latin"], variable: "--font-sans",})
+const fontSans = Crimson_Pro({subsets: ["latin"], variable: "--font-sans",})
 
 export const metadata: Metadata = {
     title: "Vivis Tidlösa",
