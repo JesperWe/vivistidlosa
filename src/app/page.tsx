@@ -55,7 +55,7 @@ export default async function Home() {
                     </SheetHeader>
                     <Accordion type="single" collapsible className="w-full">
                         {cms.info.map(info => (
-                            <AccordionItem value={"item-"+info.id} key={info.id}>
+                            <AccordionItem value={"item-" + info.id} key={info.id}>
                                 <AccordionTrigger>{info.headline}</AccordionTrigger>
                                 <AccordionContent>
                                     <div dangerouslySetInnerHTML={{__html: info.content ?? ''}}/>
@@ -65,10 +65,6 @@ export default async function Home() {
                     </Accordion>
                 </SheetContent>
             </Sheet>
-
-            <div className="absolute right-2 md:right-8 bottom-2 z-10 p-2">
-                <p><img src="/logo.svg" alt="" className="w-[calc(100px+10dvw)]"/></p>
-            </div>
 
             <Carousel className="w-full h-[calc(100dvh)]">
                 <CarouselContent>
@@ -89,17 +85,21 @@ export default async function Home() {
                                 </picture>
 
                                 <div
-                                    className="absolute bottom-2 z-10 p-2 w-full bg-white bg-opacity-30 backdrop-blur-md"
+                                    className="absolute bottom-2 z-10 py-2  px-4 md:px-6 w-full bg-white bg-opacity-30 backdrop-blur-md flex justify-between items-center"
                                 >
-                                    <div
-                                        className="flex flex-col items-start lg:items-center justify-end text-center px-4 md:px-6">
+                                    <div>
                                         <p className="text-lg sm:text-2xl lg:text-4xl tracking-tight">
                                             {bouquet.name}
                                         </p>
                                         <p className="mb-2 max-w-md text-sm sm:text-xl lg:text-1xl tracking-tight">
-                                            {bouquet.price}kr inkl moms
+                                            {bouquet.price} kr inkl moms
                                         </p>
                                     </div>
+
+                                    <div>
+                                        <p><img src="/logo.svg" alt="" className="w-[calc(100px+10dvw)]"/></p>
+                                    </div>
+
                                 </div>
                             </div>
                         </CarouselItem>
