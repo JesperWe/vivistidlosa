@@ -4,12 +4,11 @@ import React from "react"
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,} from "@/components/ui/carousel"
 import {ArrowLeftCircleIcon, ArrowRightCircleIcon, Bars3Icon} from '@heroicons/react/24/solid'
 import {Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger,} from "@/components/ui/sheet"
-import {Separator} from "@/components/ui/separator"
-import Link from "next/link"
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from "@/components/ui/accordion"
 
 const bouquets = gql(`
-		query Bouquets {
-			bouquet {
+		query cms {
+			bouquet(sort: ["sort"]) {
 				id
 				name
 				price
@@ -21,6 +20,11 @@ const bouquets = gql(`
 					focal_point_y
 				}
 			}
+			info(sort: ["sort"]) {
+                id
+                headline
+                content
+            }
 		}
     `)
 
@@ -32,7 +36,7 @@ async function getData() {
 }
 
 export default async function Home() {
-    const b = await getData()
+    const cms = await getData()
 
     return (
         <main>
@@ -49,13 +53,16 @@ export default async function Home() {
                             <img src="/logo.svg" alt="" className="w-[calc(150px+8dvw)]"/>
                         </SheetTitle>
                     </SheetHeader>
-                    <div className={"py-4 text-2xl text-left"}>
-                        <Link href="/">Prislista</Link>
-                    </div>
-                    <Separator/>
-                    <div className={"py-4 text-2xl text-left"}>
-                        <Link href="/">Vanliga frågor</Link>
-                    </div>
+                    <Accordion type="single" collapsible className="w-full">
+                        {cms.info.map(info => (
+                            <AccordionItem value={"item-"+info.id} key={info.id}>
+                                <AccordionTrigger>{info.headline}</AccordionTrigger>
+                                <AccordionContent>
+                                    <div dangerouslySetInnerHTML={{__html: info.content ?? ''}}/>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
                 </SheetContent>
             </Sheet>
 
@@ -65,7 +72,7 @@ export default async function Home() {
 
             <Carousel className="w-full h-[calc(100dvh)]">
                 <CarouselContent>
-                    {b.bouquet.map(bouquet => (
+                    {cms.bouquet.map(bouquet => (
                         <CarouselItem key={bouquet.id}>
                             <div className="relative w-full h-[calc(100dvh)]">
 

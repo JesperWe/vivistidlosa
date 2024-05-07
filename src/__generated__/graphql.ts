@@ -36,6 +36,12 @@ export type Query = {
   bouquet_aggregated: Array<Bouquet_Aggregated>;
   bouquet_by_id?: Maybe<Bouquet>;
   bouquet_by_version?: Maybe<Version_Bouquet>;
+  info: Array<Info>;
+  info_aggregated: Array<Info_Aggregated>;
+  info_by_id?: Maybe<Info>;
+  info_by_version?: Maybe<Version_Info>;
+  menu?: Maybe<Menu>;
+  menu_by_version?: Maybe<Version_Menu>;
 };
 
 
@@ -71,11 +77,56 @@ export type QueryBouquet_By_VersionArgs = {
   version: Scalars['String']['input'];
 };
 
+
+export type QueryInfoArgs = {
+  filter?: InputMaybe<Info_Filter>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryInfo_AggregatedArgs = {
+  filter?: InputMaybe<Info_Filter>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  search?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryInfo_By_IdArgs = {
+  id: Scalars['ID']['input'];
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryInfo_By_VersionArgs = {
+  id: Scalars['ID']['input'];
+  version: Scalars['String']['input'];
+};
+
+
+export type QueryMenuArgs = {
+  version?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryMenu_By_VersionArgs = {
+  version: Scalars['String']['input'];
+};
+
 export type Subscription = {
   __typename?: 'Subscription';
   bouquet_mutated?: Maybe<Bouquet_Mutated>;
   directus_files_mutated?: Maybe<Directus_Files_Mutated>;
   directus_folders_mutated?: Maybe<Directus_Folders_Mutated>;
+  info_mutated?: Maybe<Info_Mutated>;
+  menu_mutated?: Maybe<Menu_Mutated>;
 };
 
 
@@ -90,6 +141,16 @@ export type SubscriptionDirectus_Files_MutatedArgs = {
 
 
 export type SubscriptionDirectus_Folders_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionInfo_MutatedArgs = {
+  event?: InputMaybe<EventEnum>;
+};
+
+
+export type SubscriptionMenu_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -352,6 +413,96 @@ export type Directus_Folders_Mutated = {
   key: Scalars['ID']['output'];
 };
 
+export type Info = {
+  __typename?: 'info';
+  content?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  headline?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+export type Info_Aggregated = {
+  __typename?: 'info_aggregated';
+  avg?: Maybe<Info_Aggregated_Fields>;
+  avgDistinct?: Maybe<Info_Aggregated_Fields>;
+  count?: Maybe<Info_Aggregated_Count>;
+  countAll?: Maybe<Scalars['Int']['output']>;
+  countDistinct?: Maybe<Info_Aggregated_Count>;
+  group?: Maybe<Scalars['JSON']['output']>;
+  max?: Maybe<Info_Aggregated_Fields>;
+  min?: Maybe<Info_Aggregated_Fields>;
+  sum?: Maybe<Info_Aggregated_Fields>;
+  sumDistinct?: Maybe<Info_Aggregated_Fields>;
+};
+
+export type Info_Aggregated_Count = {
+  __typename?: 'info_aggregated_count';
+  content?: Maybe<Scalars['Int']['output']>;
+  date_created?: Maybe<Scalars['Int']['output']>;
+  date_updated?: Maybe<Scalars['Int']['output']>;
+  headline?: Maybe<Scalars['Int']['output']>;
+  id?: Maybe<Scalars['Int']['output']>;
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['Int']['output']>;
+  user_created?: Maybe<Scalars['Int']['output']>;
+  user_updated?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Info_Aggregated_Fields = {
+  __typename?: 'info_aggregated_fields';
+  id?: Maybe<Scalars['Float']['output']>;
+  sort?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Info_Filter = {
+  _and?: InputMaybe<Array<InputMaybe<Info_Filter>>>;
+  _or?: InputMaybe<Array<InputMaybe<Info_Filter>>>;
+  content?: InputMaybe<String_Filter_Operators>;
+  date_created?: InputMaybe<Date_Filter_Operators>;
+  date_created_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  date_updated?: InputMaybe<Date_Filter_Operators>;
+  date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
+  headline?: InputMaybe<String_Filter_Operators>;
+  id?: InputMaybe<Number_Filter_Operators>;
+  sort?: InputMaybe<Number_Filter_Operators>;
+  status?: InputMaybe<String_Filter_Operators>;
+  user_created?: InputMaybe<String_Filter_Operators>;
+  user_updated?: InputMaybe<String_Filter_Operators>;
+};
+
+export type Info_Mutated = {
+  __typename?: 'info_mutated';
+  data?: Maybe<Info>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
+export type Menu = {
+  __typename?: 'menu';
+  content?: Maybe<Scalars['JSON']['output']>;
+  content_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  status?: Maybe<Scalars['String']['output']>;
+};
+
+export type Menu_Mutated = {
+  __typename?: 'menu_mutated';
+  data?: Maybe<Menu>;
+  event?: Maybe<EventEnum>;
+  key: Scalars['ID']['output'];
+};
+
 export type Number_Filter_Operators = {
   _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
   _eq?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
@@ -405,10 +556,37 @@ export type Version_Bouquet = {
   user_updated?: Maybe<Scalars['String']['output']>;
 };
 
-export type BouquetsQueryVariables = Exact<{ [key: string]: never; }>;
+export type Version_Info = {
+  __typename?: 'version_info';
+  content?: Maybe<Scalars['String']['output']>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  headline?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  sort?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  user_created?: Maybe<Scalars['String']['output']>;
+  user_updated?: Maybe<Scalars['String']['output']>;
+};
+
+export type Version_Menu = {
+  __typename?: 'version_menu';
+  content?: Maybe<Scalars['JSON']['output']>;
+  content_func?: Maybe<Count_Functions>;
+  date_created?: Maybe<Scalars['Date']['output']>;
+  date_created_func?: Maybe<Datetime_Functions>;
+  date_updated?: Maybe<Scalars['Date']['output']>;
+  date_updated_func?: Maybe<Datetime_Functions>;
+  id: Scalars['ID']['output'];
+  status?: Maybe<Scalars['String']['output']>;
+};
+
+export type CmsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type BouquetsQuery = { __typename?: 'Query', bouquet: Array<{ __typename?: 'bouquet', id: string, name?: string | null, price?: number | null, hero_image?: { __typename?: 'directus_files', filename_disk?: string | null, filename_download: string, title?: string | null, focal_point_x?: number | null, focal_point_y?: number | null } | null }> };
+export type CmsQuery = { __typename?: 'Query', bouquet: Array<{ __typename?: 'bouquet', id: string, name?: string | null, price?: number | null, hero_image?: { __typename?: 'directus_files', filename_disk?: string | null, filename_download: string, title?: string | null, focal_point_x?: number | null, focal_point_y?: number | null } | null }>, info: Array<{ __typename?: 'info', id: string, headline?: string | null, content?: string | null }> };
 
 
-export const BouquetsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Bouquets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bouquet"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filename_disk"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"focal_point_x"}},{"kind":"Field","name":{"kind":"Name","value":"focal_point_y"}}]}}]}}]}}]} as unknown as DocumentNode<BouquetsQuery, BouquetsQueryVariables>;
+export const CmsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"cms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bouquet"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"ListValue","values":[{"kind":"StringValue","value":"sort","block":false}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"hero_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"filename_disk"}},{"kind":"Field","name":{"kind":"Name","value":"filename_download"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"focal_point_x"}},{"kind":"Field","name":{"kind":"Name","value":"focal_point_y"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"info"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"ListValue","values":[{"kind":"StringValue","value":"sort","block":false}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"headline"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]} as unknown as DocumentNode<CmsQuery, CmsQueryVariables>;
