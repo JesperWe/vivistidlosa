@@ -91,9 +91,13 @@ export default async function Home() {
                                         <p className="text-lg sm:text-2xl lg:text-4xl tracking-tight">
                                             {bouquet.name}
                                         </p>
-                                        <p className="mb-2 max-w-md text-sm sm:text-xl lg:text-1xl tracking-tight">
-                                            {bouquet.price} kr inkl moms
-                                        </p>
+
+                                        {(bouquet.price ?? 0) > 0 &&
+                                            <p className="mb-2 max-w-md text-sm sm:text-xl lg:text-1xl tracking-tight">
+                                                {bouquet.price} kr inkl moms
+                                            </p>
+                                        }
+
                                     </div>
 
                                     <div>
