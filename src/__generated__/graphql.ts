@@ -40,8 +40,6 @@ export type Query = {
   info_aggregated: Array<Info_Aggregated>;
   info_by_id?: Maybe<Info>;
   info_by_version?: Maybe<Version_Info>;
-  menu?: Maybe<Menu>;
-  menu_by_version?: Maybe<Version_Menu>;
 };
 
 
@@ -110,23 +108,12 @@ export type QueryInfo_By_VersionArgs = {
   version: Scalars['String']['input'];
 };
 
-
-export type QueryMenuArgs = {
-  version?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryMenu_By_VersionArgs = {
-  version: Scalars['String']['input'];
-};
-
 export type Subscription = {
   __typename?: 'Subscription';
   bouquet_mutated?: Maybe<Bouquet_Mutated>;
   directus_files_mutated?: Maybe<Directus_Files_Mutated>;
   directus_folders_mutated?: Maybe<Directus_Folders_Mutated>;
   info_mutated?: Maybe<Info_Mutated>;
-  menu_mutated?: Maybe<Menu_Mutated>;
 };
 
 
@@ -146,11 +133,6 @@ export type SubscriptionDirectus_Folders_MutatedArgs = {
 
 
 export type SubscriptionInfo_MutatedArgs = {
-  event?: InputMaybe<EventEnum>;
-};
-
-
-export type SubscriptionMenu_MutatedArgs = {
   event?: InputMaybe<EventEnum>;
 };
 
@@ -484,25 +466,6 @@ export type Info_Mutated = {
   key: Scalars['ID']['output'];
 };
 
-export type Menu = {
-  __typename?: 'menu';
-  content?: Maybe<Scalars['JSON']['output']>;
-  content_func?: Maybe<Count_Functions>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
-  id: Scalars['ID']['output'];
-  status?: Maybe<Scalars['String']['output']>;
-};
-
-export type Menu_Mutated = {
-  __typename?: 'menu_mutated';
-  data?: Maybe<Menu>;
-  event?: Maybe<EventEnum>;
-  key: Scalars['ID']['output'];
-};
-
 export type Number_Filter_Operators = {
   _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']['input']>>>;
   _eq?: InputMaybe<Scalars['GraphQLStringOrFloat']['input']>;
@@ -569,18 +532,6 @@ export type Version_Info = {
   status?: Maybe<Scalars['String']['output']>;
   user_created?: Maybe<Scalars['String']['output']>;
   user_updated?: Maybe<Scalars['String']['output']>;
-};
-
-export type Version_Menu = {
-  __typename?: 'version_menu';
-  content?: Maybe<Scalars['JSON']['output']>;
-  content_func?: Maybe<Count_Functions>;
-  date_created?: Maybe<Scalars['Date']['output']>;
-  date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars['Date']['output']>;
-  date_updated_func?: Maybe<Datetime_Functions>;
-  id: Scalars['ID']['output'];
-  status?: Maybe<Scalars['String']['output']>;
 };
 
 export type CmsQueryVariables = Exact<{ [key: string]: never; }>;
