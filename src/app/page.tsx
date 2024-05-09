@@ -30,7 +30,9 @@ const bouquets = gql(`
 
 async function getData() {
     const endpoint = `https://cms.vivistidlosa.se/graphql`
-    const client = new GraphQLClient(endpoint, {next: {tags: ['cms']}})
+    const client = new GraphQLClient(endpoint, {
+        fetch: (url, options) => fetch(url, {...options, next: {tags: ['cms']}})
+    })
     const res = await client.request(bouquets)
     return res
 }
