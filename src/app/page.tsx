@@ -111,6 +111,14 @@ export default async function Home() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+                <CarouselPrevious
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hover:text-gray-300 focus:text-gray-300 transition-colors">
+                    <ArrowLeftCircleIcon/>
+                </CarouselPrevious>
+                <CarouselNext
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 hover:text-gray-300 focus:text-gray-300 transition-colors">
+                    <ArrowRightCircleIcon/>
+                </CarouselNext>
             </Carousel>
         </main>
     )
