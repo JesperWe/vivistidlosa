@@ -12,6 +12,7 @@ const bouquets = gql(`
 				id
 				name
 				price
+				size
 				hero_image {
 					filename_disk
 					filename_download
@@ -33,8 +34,7 @@ async function getData() {
     const client = new GraphQLClient(endpoint, {
         fetch: (url, options) => fetch(url, {...options, next: {tags: ['cms']}})
     })
-    const res = await client.request(bouquets)
-    return res
+    return await client.request(bouquets)
 }
 
 export default async function Home() {
@@ -87,19 +87,25 @@ export default async function Home() {
                                 </picture>
 
                                 <div
-                                    className="absolute bottom-2 z-10 py-2  px-4 md:px-6 w-full bg-white bg-opacity-30 backdrop-blur-md flex justify-between items-center"
+                                    className="absolute bottom-2 z-10 py-2 px-4 md:px-6 w-full bg-white bg-opacity-30 backdrop-blur-md flex justify-between items-center"
                                 >
-                                    <div>
-                                        <p className="text-lg sm:text-2xl lg:text-4xl tracking-tight">
+                                    <div className="flex items-baseline">
+                                        <span className="text-lg sm:text-2xl lg:text-4xl tracking-tight">
                                             {bouquet.name}
-                                        </p>
-
-                                        {(bouquet.price ?? 0) > 0 &&
-                                            <p className="mb-2 max-w-md text-sm sm:text-xl lg:text-1xl tracking-tight">
-                                                {bouquet.price} kr inkl moms
-                                            </p>
-                                        }
-
+                                        </span>
+                                        <div>
+                                        <span
+                                            className="mb-2 max-w-md text-xs sm:text-s lg:text-xl tracking-tight px-2 flex items-center opacity-60"
+                                        >
+                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg"><path
+                                                d="M11.5 3.04999C11.7485 3.04999 11.95 3.25146 11.95 3.49999V7.49999C11.95 7.74852 11.7485 7.94999 11.5 7.94999C11.2515 7.94999 11.05 7.74852 11.05 7.49999V4.58639L4.58638 11.05H7.49999C7.74852 11.05 7.94999 11.2515 7.94999 11.5C7.94999 11.7485 7.74852 11.95 7.49999 11.95L3.49999 11.95C3.38064 11.95 3.26618 11.9026 3.18179 11.8182C3.0974 11.7338 3.04999 11.6193 3.04999 11.5L3.04999 7.49999C3.04999 7.25146 3.25146 7.04999 3.49999 7.04999C3.74852 7.04999 3.94999 7.25146 3.94999 7.49999L3.94999 10.4136L10.4136 3.94999L7.49999 3.94999C7.25146 3.94999 7.04999 3.74852 7.04999 3.49999C7.04999 3.25146 7.25146 3.04999 7.49999 3.04999L11.5 3.04999Z"
+                                                fill="currentColor" fill-rule="evenodd"
+                                                clip-rule="evenodd"></path>
+                                            </svg>
+                                            {bouquet.size}
+                                        </span>
+                                        </div>
                                     </div>
 
                                     <div>
